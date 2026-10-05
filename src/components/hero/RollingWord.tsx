@@ -38,7 +38,7 @@ export function RollingWord({ words, className }: RollingWordProps) {
     <span
       className={cn(
         'block h-[1.2em] overflow-clip leading-[1.2]',
-        isRolling ? '[overflow-clip-margin:0px]' : '[overflow-clip-margin:30px]',
+        isRolling ? '[overflow-clip-margin:0px]' : '[overflow-clip-margin:0.2em]',
         className,
       )}
     >
@@ -54,7 +54,7 @@ export function RollingWord({ words, className }: RollingWordProps) {
         <span className="block">
           <SplitLetters text={currentWord} />
         </span>
-        <span className="block" aria-hidden="true">
+        <span className={cn('block', !isRolling && 'invisible')} aria-hidden="true">
           <SplitLetters text={nextWord} />
         </span>
       </span>

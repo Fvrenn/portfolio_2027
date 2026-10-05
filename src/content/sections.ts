@@ -3,6 +3,8 @@ export const SECTION_IDS = {
   approach: 'approche',
   projects: 'projets',
   method: 'methode',
+  journey: 'parcours',
+  gear: 'materiel',
   contact: 'contact',
 }
 

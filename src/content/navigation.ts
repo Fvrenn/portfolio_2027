@@ -11,6 +11,8 @@ const fr = {
     { label: 'Approche', href: toAnchor(SECTION_IDS.approach) },
     { label: 'Projets', href: toAnchor(SECTION_IDS.projects) },
     { label: 'Méthode', href: toAnchor(SECTION_IDS.method) },
+    { label: 'Parcours', href: toAnchor(SECTION_IDS.journey) },
+    { label: 'Matériel', href: toAnchor(SECTION_IDS.gear) },
   ],
   cta: { label: 'Me contacter', href: toAnchor(SECTION_IDS.contact) },
 }
@@ -25,6 +27,8 @@ const en: typeof fr = {
     { label: 'Approach', href: toAnchor(SECTION_IDS.approach) },
     { label: 'Projects', href: toAnchor(SECTION_IDS.projects) },
     { label: 'Method', href: toAnchor(SECTION_IDS.method) },
+    { label: 'Journey', href: toAnchor(SECTION_IDS.journey) },
+    { label: 'Gear', href: toAnchor(SECTION_IDS.gear) },
   ],
   cta: { label: 'Get in touch', href: toAnchor(SECTION_IDS.contact) },
 }

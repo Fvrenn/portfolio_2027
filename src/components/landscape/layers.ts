@@ -12,7 +12,7 @@ export const CLOUD_FALLBACK_WIDTH = 960
 
 export const SKY_PATH = `${HERO_IMAGE_DIR}/sky`
 
-export const MOUNTAINS_PATH = `${HERO_IMAGE_DIR}/mountains`
+const MOUNTAINS_PATH = `${HERO_IMAGE_DIR}/mountains`
 
 export const LANDSCAPE_LAYERS = [
   { path: MOUNTAINS_PATH, depth: 0.15 },

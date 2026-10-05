@@ -2,7 +2,7 @@ import type { RefObject } from 'react'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { MOTION_ALLOWED_QUERY } from './useMediaQuery'
 
-const PINNED_LAYOUT_QUERY = `${MOTION_ALLOWED_QUERY} and (min-width: 640px)`
+const PINNED_LAYOUT_QUERY = `${MOTION_ALLOWED_QUERY} and (min-width: 1024px)`
 const INACTIVE_ENTRY_OPACITY = 0.45
 const DROP_START_OFFSET = -0.55
 const HOVER_OFFSET = -0.1

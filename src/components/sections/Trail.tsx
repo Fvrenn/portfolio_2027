@@ -33,18 +33,18 @@ export function Trail() {
   useTrailProgress({ sectionRef, pathRef, revealPathRef, markerRef }, { path, height })
 
   return (
-    <section ref={sectionRef} id={SECTION_IDS.projects} className="relative z-2 overflow-hidden bg-cream px-6 py-32">
+    <section ref={sectionRef} id={SECTION_IDS.projects} className="relative z-2 overflow-hidden bg-cream px-6 py-[clamp(80px,10vw,128px)]">
       <TopoMap />
       <MapDetails {...map} />
       <div className="relative mx-auto max-w-[1240px]">
         <SectionHeading eyebrow={eyebrow} title={title} intro={intro} />
         <div className="relative mt-12 grid auto-rows-fr">
           <TrailPath path={path} height={height} pathRef={pathRef} revealPathRef={revealPathRef} />
-          <TrailMarkers points={points} height={height} markerLabel={labels.markerLabel} markerRef={markerRef} />
+          <TrailMarkers points={points} height={height} markerLabel={labels.markerLabel} walkerImage={labels.walkerImage} markerRef={markerRef} />
           {projects.map((project, i) => (
             <div
               key={project.slug}
-              className={cn('flex items-center py-10 max-sm:pl-12', i % 2 === 0 ? 'sm:justify-end' : 'sm:justify-start')}
+              className={cn('flex items-center py-[clamp(24px,4vw,40px)] max-sm:pl-[clamp(40px,12vw,56px)]', i % 2 === 0 ? 'sm:justify-end' : 'sm:justify-start')}
             >
               <ProjectCard
                 project={project}

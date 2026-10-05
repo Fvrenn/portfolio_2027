@@ -21,7 +21,7 @@ export interface Project {
 const PROJECT_FACTS = {
   first: { slug: 'projet-1', url: 'projet.fr', stack: ['React', 'TypeScript'], href: '', screenshotSrc: '' },
   second: { slug: 'projet-2', url: 'projet.fr', stack: ['Node.js', 'PostgreSQL'], href: '', screenshotSrc: '' },
-  portfolio: { slug: 'portfolio', url: 'timothe.dev', stack: ['React', 'GSAP', 'Tailwind'], href: '', screenshotSrc: '/images/projects/portfolio.webp' },
+  portfolio: { slug: 'portfolio', url: 'timothe.dev', stack: ['React', 'TypeScript', 'GSAP', 'Tailwind'], href: '', screenshotSrc: '/images/projects/portfolio.webp' },
 }
 
 type ProjectFacts = (typeof PROJECT_FACTS)[keyof typeof PROJECT_FACTS]
@@ -33,6 +33,8 @@ const toProject = ({ screenshotSrc, ...facts }: ProjectFacts, { screenshotAlt, .
   screenshot: { src: screenshotSrc, alt: screenshotAlt },
 })
 
+const WALKER_IMAGE = '/images/parcours/walker.webp'
+
 const MAP_PLACE_POSITIONS = [
   { xPercent: 62, yPercent: 7 },
   { xPercent: 3, yPercent: 38 },
@@ -43,12 +45,13 @@ const MAP_PLACE_POSITIONS = [
 const toPlaces = (names: string[]) => names.map((name, i) => ({ name, ...MAP_PLACE_POSITIONS[i] }))
 
 const fr = {
-  eyebrow: 'Le sentier',
+  eyebrow: 'Midi · Le sentier',
   title: 'Projets',
   intro: "Chaque étape raconte un produit : le problème de départ, ce que j'ai construit pour le résoudre et ce que ça a changé.",
   resultLabel: 'Résultat',
   linkLabel: "Voir l'itinéraire",
   markerLabel: 'Vous êtes ici',
+  walkerImage: WALKER_IMAGE,
   screenshotPlaceholder: 'Capture à venir',
   map: {
     scaleLabel: '500 m',
@@ -58,7 +61,7 @@ const fr = {
   projects: [
     toProject(PROJECT_FACTS.first, {
       stage: 'Étape 01',
-      altitude: '1 450 m',
+      altitude: '1\u202f450\u00a0m',
       title: 'Nom du projet',
       problem: 'Le problème résolu, et pour qui, en une phrase compréhensible par une personne non technique.',
       result: 'Le résultat concret : utilisateurs, temps gagné, retours, mise en production…',
@@ -66,7 +69,7 @@ const fr = {
     }),
     toProject(PROJECT_FACTS.second, {
       stage: 'Étape 02',
-      altitude: '1 980 m',
+      altitude: '1\u202f980\u00a0m',
       title: 'Nom du projet',
       problem: 'Le problème résolu, et pour qui, en une phrase compréhensible par une personne non technique.',
       result: 'Le résultat concret : utilisateurs, temps gagné, retours, mise en production…',
@@ -74,7 +77,7 @@ const fr = {
     }),
     toProject(PROJECT_FACTS.portfolio, {
       stage: 'Étape 03',
-      altitude: '2 540 m',
+      altitude: '2\u202f540\u00a0m',
       title: 'Ce portfolio',
       problem: "Présenter mon travail à des recruteurs en moins d'une minute, avec une identité mémorable.",
       result: 'Paysage peint en parallaxe, boussole interactive, code public suivant un guide de qualité.',
@@ -84,12 +87,13 @@ const fr = {
 }
 
 const en: typeof fr = {
-  eyebrow: 'The trail',
+  eyebrow: 'Midday · The trail',
   title: 'Projects',
   intro: 'Each stage tells the story of a product: the starting problem, what I built to solve it and what it changed.',
   resultLabel: 'Outcome',
   linkLabel: 'See the route',
   markerLabel: 'You are here',
+  walkerImage: WALKER_IMAGE,
   screenshotPlaceholder: 'Screenshot coming soon',
   map: {
     scaleLabel: '500 m',
@@ -99,7 +103,7 @@ const en: typeof fr = {
   projects: [
     toProject(PROJECT_FACTS.first, {
       stage: 'Stage 01',
-      altitude: '1,450 m',
+      altitude: '1,450\u00a0m',
       title: 'Project name',
       problem: 'The problem solved, and for whom, in one sentence a non-technical person can follow.',
       result: 'The concrete outcome: users, time saved, feedback, release…',
@@ -107,7 +111,7 @@ const en: typeof fr = {
     }),
     toProject(PROJECT_FACTS.second, {
       stage: 'Stage 02',
-      altitude: '1,980 m',
+      altitude: '1,980\u00a0m',
       title: 'Project name',
       problem: 'The problem solved, and for whom, in one sentence a non-technical person can follow.',
       result: 'The concrete outcome: users, time saved, feedback, release…',
@@ -115,7 +119,7 @@ const en: typeof fr = {
     }),
     toProject(PROJECT_FACTS.portfolio, {
       stage: 'Stage 03',
-      altitude: '2,540 m',
+      altitude: '2,540\u00a0m',
       title: 'This portfolio',
       problem: 'Show my work to recruiters in under a minute, with a memorable identity.',
       result: 'Painted parallax landscape, interactive compass, public code following a written quality guide.',

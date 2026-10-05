@@ -51,6 +51,7 @@ Le visiteur suit **une journée de randonnée**. Chaque section est un **lieu** 
 | Matin | Le départ | Approche | Phrase « créateur de produits », déjà faite |
 | Midi | Le sentier | Projets | La carte topographique reste. Le point GPS « Vous êtes ici » devient **un petit randonneur peint qui marche** le long de l'itinéraire |
 | Après-midi | Le col | Le sac (méthode) | Fond peint d'un col au soleil d'après-midi, avec le sac posé dans l'herbe. **5ᵉ objet : les pochettes de rangement**, pour « un code rangé comme mon sac » |
+| Fin d'après-midi | Le refuge | Parcours | Profil d'altitude tracé au scroll : 4 ans chez Trialog en 5 paliers (2 stages, 3 ans d'alternance), formation en parallèle (BUT MMI, mastère Efrei), scoutisme présenté comme des compétences |
 | Nuit | Le bivouac | Équipement (stack) et carnet de bord (qualité du code) | Feu de camp, tente éclairée, étoiles, lumière tamisée |
 | Aube | Le sommet | Contact | Lever de soleil sur une mer de nuages, randonneur au sommet. « Et si la prochaine étape, on la faisait ensemble ? » |
 
@@ -78,15 +79,20 @@ Le visiteur suit **une journée de randonnée**. Chaque section est un **lieu** 
 
 ### 3.5 À faire, dans l'ordre
 
-1. [ ] Générer les images (section 4) et les déposer dans `design/parcours/`, puis passer les grandes scènes dans Upscayl ×5 « high-fidelity ».
-2. [ ] Fournir la vraie stack, en trois listes (au quotidien / utilisé en projet / en exploration).
+1. [x] Générer les images (section 4) et les déposer dans `design/parcours/`.
+   - [ ] Optionnel : passer les grandes scènes dans Upscayl ×5 « high-fidelity » puis ajouter les largeurs 2560 et 3840 (`SCENE_WIDTHS` dans `src/components/scene/scenes.ts`). Les WebP actuels s'arrêtent à 1536 px.
+2. [ ] Fournir la vraie stack, en trois listes (au quotidien / utilisé en projet / en exploration). La liste actuelle dans `src/content/stack.ts` est **un exemple**. « Où je l'ai utilisé » est calculé à partir du champ `stack` de chaque projet (`src/content/projects.ts`) : les noms doivent être écrits pareil des deux côtés. Les logos ne sont pas encore affichés.
 3. [ ] Valider l'ajout d'ESLint, Prettier, Vitest et de la CI.
-4. [ ] Coder dans cet ordre :
-   - le marcheur sur la carte ;
-   - le col derrière le sac et le 5ᵉ objet ;
-   - le bivouac avec la stack et le carnet de bord ;
-   - le sommet à l'aube ;
-   - les fondus de couleur du ciel d'une section à l'autre.
+4. [x] Coder dans cet ordre :
+   - [x] le marcheur sur la carte (`TrailMarkers`, `useTrailProgress`) : il se retourne selon le sens du sentier et marche pendant le scroll ;
+   - [x] le col derrière le sac et le 5ᵉ objet (les pochettes) ;
+   - [x] le bivouac avec la stack et le carnet de bord (`sections/Bivouac.tsx`, `components/bivouac/`) ;
+   - [x] le sommet à l'aube (`sections/Summit.tsx`) ;
+   - [x] les fondus de couleur : col → nuit en dégradé, nuit → aube par la ligne de crête, heure de la journée dans chaque surtitre.
+   - [x] le refuge : section « Parcours » (`sections/Journey.tsx`, `components/journey/`, contenu dans `content/journey.ts`) ;
+   - [x] l'image du refuge (prompt 8) derrière le titre de la section Parcours ;
+   - [ ] compléter le parcours : un résultat concret ou un chiffre par palier chez Trialog (utilisateurs d'OCPPVS, clients, retours…) ;
+   - [ ] Vérifier le rendu sur mobile (non testé).
 5. [ ] Remplir les vrais projets dans `src/content/projects.ts` : textes FR + EN, captures 1440 × 900 dans `design/projets/`.
 6. [ ] Remplir le contact dans `src/content/contact.ts` : ce que tu recherches, e-mail, LinkedIn, GitHub, CV en PDF dans `public/`.
 
@@ -94,10 +100,17 @@ Le visiteur suit **une journée de randonnée**. Chaque section est un **lieu** 
 
 | Fichier | Statut |
 |---|---|
-| `design/parcours/marcheur-casquette.png` | Prompt 1, version avec casquette. **À choisir** |
-| `design/parcours/marcheur-lunettes.png` | Prompt 1, version cheveux bouclés et lunettes, sans casquette. **À choisir** |
+| `design/parcours/marcheur-casquette.png` | Prompt 1, **retenu** → `public/images/parcours/walker.webp` |
+| `design/parcours/marcheur-lunettes.png` | Prompt 1, variante non retenue |
+| `design/parcours/col-fond.png` | Prompt 2 → `col-<largeur>.webp` |
+| `design/parcours/pochettes.png` | Prompt 3 → `public/images/bag/pouches.webp` |
+| `design/parcours/bivouac-fond.png` | Prompt 4 → `bivouac-<largeur>.webp` |
+| `design/parcours/bivouac-camp.png` | Prompt 5 → `bivouac-camp-<largeur>.webp` |
+| `design/parcours/sommet-fond.png` | Prompt 6 → `sommet-<largeur>.webp` |
+| `design/parcours/sommet-perso.png` | Prompt 7 → `sommet-perso-<largeur>.webp` |
+| `design/parcours/refuge-fond.png` | Prompt 8 → `refuge-<largeur>.webp` |
 
-Le personnage du hero porte une casquette : la version `marcheur-casquette` est la plus cohérente.
+Les scènes sont déclinées en 768 et 1536 px dans `public/images/parcours/` et déclarées une seule fois dans `src/components/scene/scenes.ts`.
 
 ---
 
@@ -193,6 +206,12 @@ Joindre l'image `sommet-fond.png` générée juste avant, et la photo de Timoth�
 
 ```
 Format paysage 1536 × 1024, même cadrage que l'image jointe, fond réellement transparent. Uniquement le premier plan : la pointe rocheuse du sommet dans le tiers droit, avec un petit cairn, et le randonneur de la photo debout dessus, vu de dos, sac à dos orange, regardant le lever de soleil, un bras levé. Contre-jour : le personnage et la roche sont éclairés par une lumière rose-orangée sur les bords. Tout le reste est transparent.
+```
+
+### 4.9 Prompt 8 — `refuge-fond.png`, la fin d'après-midi au refuge (fond opaque)
+
+```
+Format paysage 1536 × 1024, entièrement opaque. Un refuge de montagne en pierre et bois, au toit de lauzes, posé sur un replat d'alpage en fin d'après-midi : lumière dorée rasante venant de la droite, longues ombres, fenêtres légèrement éclairées. Le refuge occupe le tiers droit, avec un banc et un sac à dos orange posé contre le mur. Derrière, un sentier en lacets qui descend vers la vallée, et des sommets enneigés teintés d'orange. Le tiers gauche est calme et peu détaillé (ciel chaud et pente douce) pour y mettre du texte. Pas de personnage. Même style peint, même palette, ciel plus chaud que l'après-midi.
 ```
 
 ---

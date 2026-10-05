@@ -2,11 +2,11 @@ import type { Localized } from '@/i18n/locale'
 import { SECTION_IDS, toAnchor } from './sections'
 
 const fr = {
-  eyebrow: 'Bonjour, je suis Timothé —',
+  eyebrow: 'Bonjour, je suis Timothé',
   srTitle: 'Timothé, développeur web qui crée des produits —',
   verticalLabel: 'PRODUIT / CODE / SOMMETS',
   line1: 'Un dev qui',
-  rollingWords: ['Crée', 'Livre', 'Code', 'Grimpe'],
+  rollingWords: ['Crée', 'Livre', 'Code', 'Marche'],
   compass: {
     headingLabel: 'Cap',
     cardinalPoints: ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'],

@@ -1,7 +1,7 @@
 import type { Localized } from '@/i18n/locale'
 
 const fr = {
-  eyebrow: 'Le départ · 1 050 m',
+  eyebrow: 'Matin · Le départ · 1\u202f050\u00a0m',
   statement:
     "J'aime créer des produits. Le code est mon outil pour leur donner vie : comprendre le besoin, imaginer la bonne solution, la livrer, puis l'améliorer avec celles et ceux qui l'utilisent.",
   aside:
@@ -9,7 +9,7 @@ const fr = {
 }
 
 const en: typeof fr = {
-  eyebrow: 'The start · 1,050 m',
+  eyebrow: 'Morning · The start · 1,050\u00a0m',
   statement:
     'I love building products. Code is how I bring them to life: understand the need, shape the right solution, ship it, then improve it with the people who use it.',
   aside:

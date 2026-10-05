@@ -10,7 +10,7 @@ const CONTACT_LINKS = {
 const YEAR = new Date().getFullYear()
 
 const fr = {
-  eyebrow: 'Le sommet · 3 120 m',
+  eyebrow: 'Aube · Le sommet · 3\u202f120\u00a0m',
   title: 'Et si la prochaine étape, on la faisait ensemble ?',
   seeking: 'Je recherche un poste de développeur web. Précise ici le type de contrat, le rythme (remote, hybride) et la zone géographique.',
   links: [
@@ -26,7 +26,7 @@ const fr = {
 }
 
 const en: typeof fr = {
-  eyebrow: 'The summit · 3,120 m',
+  eyebrow: 'Dawn · The summit · 3,120\u00a0m',
   title: 'What if we took the next step together?',
   seeking: "I'm looking for a web developer role. Specify here the contract type, the work setup (remote, hybrid) and the location.",
   links: [

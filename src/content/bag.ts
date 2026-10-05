@@ -16,17 +16,18 @@ const BAG_IMAGES = {
   rope: '/images/bag/rope.webp',
   headlamp: '/images/bag/headlamp.webp',
   tent: '/images/bag/tent.webp',
+  pouches: '/images/bag/pouches.webp',
 }
 
-type GearId = 'map' | 'rope' | 'headlamp' | 'tent'
+type GearId = 'map' | 'rope' | 'headlamp' | 'tent' | 'pouches'
 type BagItemText = Omit<BagItem, 'id' | 'image'>
 
 const toItem = (id: GearId, text: BagItemText): BagItem => ({ id, image: BAG_IMAGES[id], ...text })
 
 const fr = {
-  eyebrow: 'Le sac',
+  eyebrow: 'Après-midi · Le col · 2\u202f700\u00a0m',
   title: 'Ce que je mets dans mon sac',
-  intro: "Quatre réflexes que j'emporte sur chaque projet.",
+  intro: "Cinq réflexes que j'emporte sur chaque projet.",
   imageAlt: 'Mon sac de randonnée orange',
   openImage: BAG_IMAGES.open,
   closedImage: BAG_IMAGES.closed,
@@ -55,13 +56,19 @@ const fr = {
       text: 'Expliquer un choix simplement, poser les bonnes questions, prévenir tôt quand ça coince.',
       proof: "L'encadrement en scoutisme m'a appris à organiser et à décider en équipe.",
     }),
+    toItem('pouches', {
+      object: 'Les pochettes',
+      title: 'Un code rangé comme mon sac',
+      text: "Chaque chose a sa place : les textes d'un côté, l'affichage de l'autre, les calculs à part. On retrouve vite ce qu'on cherche et on ajoute sans tout défaire.",
+      proof: 'Le code de ce site suit un guide écrit : le carnet de bord est ouvert au bivouac.',
+    }),
   ],
 }
 
 const en: typeof fr = {
-  eyebrow: 'The pack',
+  eyebrow: 'Afternoon · The pass · 2,700\u00a0m',
   title: 'What I carry in my pack',
-  intro: 'Four habits I bring to every project.',
+  intro: 'Five habits I bring to every project.',
   imageAlt: 'My orange hiking backpack',
   openImage: BAG_IMAGES.open,
   closedImage: BAG_IMAGES.closed,
@@ -89,6 +96,12 @@ const en: typeof fr = {
       title: 'Pitch camp as a team',
       text: 'Explain a choice simply, ask the right questions, raise a flag early when something is stuck.',
       proof: 'Leading scout groups taught me to organise and decide as a team.',
+    }),
+    toItem('pouches', {
+      object: 'The stuff sacks',
+      title: 'Code packed like my bag',
+      text: 'Everything has its place: text on one side, display on the other, logic apart. You find what you need fast and add things without unpacking everything.',
+      proof: 'The code of this site follows a written guide: the logbook is open at the bivouac.',
     }),
   ],
 }

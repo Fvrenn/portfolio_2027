@@ -14,7 +14,7 @@ export function Approach() {
   const { eyebrow, statement, aside } = useLocalized(approachContent)
 
   return (
-    <section id={SECTION_IDS.approach} className="relative z-2 bg-cream px-6 pt-40 pb-32 sm:pt-52">
+    <section id={SECTION_IDS.approach} className="relative z-2 bg-cream px-6 pt-[clamp(120px,14vw,208px)] pb-[clamp(80px,10vw,128px)]">
       <RidgeEdge variant="east" frontClassName="fill-cream" backClassName="fill-mist/70" />
       <TopoLines />
       <div className="relative mx-auto max-w-[980px]">
@@ -25,7 +25,7 @@ export function Approach() {
         <p ref={statementRef} className="mt-6 font-serif text-[clamp(30px,4.4vw,60px)] leading-[1.15]">
           <RevealWords text={statement} />
         </p>
-        <p className="mt-10 max-w-[620px] text-lg text-ink/70 sm:ml-auto">{aside}</p>
+        <p className="mt-[clamp(24px,4vw,40px)] max-w-[620px] text-[clamp(16px,0.4vw+15px,18px)] text-ink/70 sm:ml-auto">{aside}</p>
       </div>
     </section>
   )

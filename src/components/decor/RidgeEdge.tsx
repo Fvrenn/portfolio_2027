@@ -1,7 +1,7 @@
 import { buildRidgeEdgePath, RIDGE_VIEWBOX_HEIGHT, RIDGE_VIEWBOX_WIDTH, type RidgeWindow } from '@/lib/ridgeEdge'
 import { MOUNTAIN_RIDGE_PROFILE } from './ridgeProfile'
 
-export type RidgeVariant = 'east' | 'west' | 'summit'
+export type RidgeVariant = 'east' | 'west' | 'refuge' | 'summit'
 
 const VARIANTS: Record<RidgeVariant, { front: RidgeWindow; back: RidgeWindow }> = {
   east: {
@@ -11,6 +11,10 @@ const VARIANTS: Record<RidgeVariant, { front: RidgeWindow; back: RidgeWindow }> 
   west: {
     front: { startRatio: 0.4, spanRatio: 0.6, isMirrored: true },
     back: { startRatio: 0, spanRatio: 0.8, isMirrored: false },
+  },
+  refuge: {
+    front: { startRatio: 0.1, spanRatio: 0.55, isMirrored: true },
+    back: { startRatio: 0.35, spanRatio: 0.65, isMirrored: false },
   },
   summit: {
     front: { startRatio: 0.25, spanRatio: 0.6, isMirrored: false },

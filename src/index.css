@@ -40,10 +40,14 @@
   --color-trail: #ff5a1f;
   --color-trail-dark: #d8430e;
   --color-gps: #2f7cf6;
-  --color-dusk-high: #2f3d6d;
   --color-dusk-mid: #a9668d;
-  --color-dusk-low: #f0a26c;
-  --color-dusk-ridge: #3a2f4f;
+  --color-col-grass: #696832;
+  --color-refuge-sky: #7e99bf;
+  --color-night-sky: #082448;
+  --color-night: #070e13;
+  --color-campfire: #ffb35c;
+  --color-dawn-high: #042668;
+  --color-dawn-low: #1f3f7c;
 
   --breakpoint-desktop: 68.8125rem;
 
@@ -61,6 +65,7 @@
   --animate-pulse-dot: pulse-dot 2.2s ease-in-out infinite;
   --animate-tag-sway: tag-sway 4.5s ease-in-out infinite alternate;
   --animate-tag-swap: tag-swap 320ms var(--ease-roll) both;
+  --animate-walk-bob: walk-bob 420ms ease-in-out infinite alternate;
 
   @keyframes sun-turn {
     to {
@@ -87,6 +92,16 @@
     }
     to {
       rotate: 1deg;
+    }
+  }
+  @keyframes walk-bob {
+    from {
+      translate: 0 0;
+      rotate: -2deg;
+    }
+    to {
+      translate: 0 -3px;
+      rotate: 2deg;
     }
   }
   @keyframes pulse-dot {
@@ -132,10 +147,6 @@
 
 @utility bg-paper {
   background: radial-gradient(circle at 50% 42%, var(--color-paper) 55%, var(--color-paper-shade) 100%);
-}
-
-@utility bg-dusk {
-  background: linear-gradient(to bottom, var(--color-dusk-high) 0%, var(--color-dusk-mid) 58%, var(--color-dusk-low) 100%);
 }
 
 @utility shadow-object {

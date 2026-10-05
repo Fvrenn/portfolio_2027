@@ -15,6 +15,10 @@ Les règles complètes sont dans `GUIDE-CODE-PROPRE.md` ; l'essentiel :
 - **La logique (calculs, effets DOM) vit dans `src/lib/` et `src/hooks/`**, les composants affichent.
 - Avant de conclure une tâche : `npm run build` (qui lance `tsc -b`) doit passer.
 
+## Git
+
+- **Ne jamais signer les commits** : aucune ligne `Co-Authored-By`, aucune mention de Claude, d'Anthropic ou d'un outil d'IA dans les messages de commit ou de pull request. L'auteur est uniquement Timothé.
+
 ## Commandes
 
 - Dev : `npm run dev`

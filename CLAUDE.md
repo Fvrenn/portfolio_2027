@@ -17,6 +17,7 @@ Les règles complètes sont dans `GUIDE-CODE-PROPRE.md` ; l'essentiel :
 
 ## Git
 
+- **Identité des commits** : toujours `Fvrenn <hegetimothe@gmail.com>`. Avant de commiter, vérifier `git config user.name` et `git config user.email` ; si ce n'est pas cette identité, la configurer pour le dépôt (`git config user.name Fvrenn` et `git config user.email hegetimothe@gmail.com`).
 - **Ne jamais signer les commits** : aucune ligne `Co-Authored-By`, aucune mention de Claude, d'Anthropic ou d'un outil d'IA dans les messages de commit ou de pull request. L'auteur est uniquement Timothé.
 
 ## Commandes

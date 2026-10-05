@@ -26,6 +26,8 @@ export function usePackingTimeline({ sectionRef, trackRef }: PackingRefs) {
         const items = gsap.utils.toArray<HTMLElement>('[data-bag-item]')
         const entries = gsap.utils.toArray<HTMLElement>('[data-bag-entry]')
         const details = gsap.utils.toArray<HTMLElement>('[data-bag-detail]')
+        gsap.set(entries, { opacity: INACTIVE_ENTRY_OPACITY })
+        gsap.set(details, { height: 0 })
         const timeline = gsap.timeline({
           defaults: { ease: 'none' },
           scrollTrigger: { trigger: trackRef.current, start: 'top top', end: 'bottom bottom', scrub: 0.8, invalidateOnRefresh: true },
@@ -34,8 +36,6 @@ export function usePackingTimeline({ sectionRef, trackRef }: PackingRefs) {
         timeline
           .set('[data-bag-open]', { opacity: 1 })
           .set('[data-bag-closed]', { opacity: 0 })
-          .set(entries, { opacity: INACTIVE_ENTRY_OPACITY })
-          .set(details, { height: 0 })
 
         items.forEach((item, i) => {
           const step = `item${i}`

@@ -2,6 +2,27 @@ import type { Localized } from '@/i18n/locale'
 import { SECTION_IDS, toAnchor } from './sections'
 
 const EDUCATION_STEP_SPANS = { bachelor: 3, master: 2 }
+
+const SCENERY_DIR = '/images/parcours/scenery'
+
+const STEP_SCENERY = {
+  flowers: { src: `${SCENERY_DIR}/fleurs.webp`, width: 360, height: 138, scale: 0.55 },
+  trees: { src: `${SCENERY_DIR}/sapins-groupe.webp`, width: 289, height: 360, scale: 1.15 },
+  chalet: { src: `${SCENERY_DIR}/chalet.webp`, width: 360, height: 286, scale: 0.95 },
+  rocks: { src: `${SCENERY_DIR}/rochers.webp`, width: 360, height: 146, scale: 0.6 },
+  summitFlag: { src: `${SCENERY_DIR}/drapeau-sommet.webp`, width: 342, height: 360, scale: 1.2 },
+}
+
+type StepScenery = keyof typeof STEP_SCENERY
+interface StepText {
+  period: string
+  kind: string
+  product: string
+  text: string
+}
+
+const toStep = (scenery: StepScenery, text: StepText) => ({ ...text, scenery: STEP_SCENERY[scenery] })
+
 const SCOUTING_PROJECT_HREF = toAnchor(SECTION_IDS.projects)
 
 const fr = {
@@ -15,36 +36,36 @@ const fr = {
       "Trialog conçoit des outils pour tester la recharge des véhicules électriques : vérifier qu'une voiture et une borne se comprennent et respectent les normes.",
   },
   steps: [
-    {
+    toStep('flowers', {
       period: '2023',
       kind: 'Stage · 1 mois',
       product: 'ComboCS',
       text: "Refonte de l'interface d'un boîtier qui simule une borne de recharge ou un véhicule électrique, pour tester leur communication.",
-    },
-    {
+    }),
+    toStep('trees', {
       period: '2024',
       kind: 'Stage · 2 mois',
       product: 'ComboCS',
       text: "Retour sur le même produit, avec une fonctionnalité à prendre en main : l'envoi des certificats de sécurité.",
-    },
-    {
+    }),
+    toStep('chalet', {
       period: '2024 – 2025',
       kind: 'Alternance · 1 an',
       product: 'OCPPVS',
       text: 'Refonte d’un logiciel qui simule des bornes virtuelles pour tester leur dialogue avec les systèmes de supervision : nouveau parcours utilisateur et premières nouveautés.',
-    },
-    {
+    }),
+    toStep('rocks', {
       period: '2025 – 2026',
       kind: 'Alternance · master',
       product: 'OCPPVS',
       text: 'Création de la partie véhicule : simuler aussi des voitures électriques et les brancher aux bornes virtuelles, à partir de modèles configurables.',
-    },
-    {
+    }),
+    toStep('summitFlag', {
       period: '2026 – 2027',
       kind: 'Alternance · en cours',
       product: 'OCPPVS · Troca',
       text: "Finaliser OCPPVS pour qu'il soit agréable à utiliser au quotidien, et travailler l'interface de Troca, un logiciel de supervision de bornes.",
-    },
+    }),
   ],
   educationLabel: 'En parallèle',
   education: [
@@ -76,36 +97,36 @@ const en: typeof fr = {
       'Trialog builds tools to test electric vehicle charging: making sure a car and a charging station understand each other and meet the standards.',
   },
   steps: [
-    {
+    toStep('flowers', {
       period: '2023',
       kind: 'Internship · 1 month',
       product: 'ComboCS',
       text: 'Redesigned the interface of a device that simulates a charging station or an electric vehicle, to test how they communicate.',
-    },
-    {
+    }),
+    toStep('trees', {
       period: '2024',
       kind: 'Internship · 2 months',
       product: 'ComboCS',
       text: 'Back on the same product, owning one feature: uploading security certificates.',
-    },
-    {
+    }),
+    toStep('chalet', {
       period: '2024 – 2025',
       kind: 'Work-study · 1 year',
       product: 'OCPPVS',
       text: 'Rebuilt a tool that simulates virtual charging stations to test how they talk to management systems: a new user journey and the first new features.',
-    },
-    {
+    }),
+    toStep('rocks', {
       period: '2025 – 2026',
       kind: 'Work-study · master',
       product: 'OCPPVS',
       text: 'Built the vehicle side: simulating electric cars too and plugging them into virtual stations, from configurable models.',
-    },
-    {
+    }),
+    toStep('summitFlag', {
       period: '2026 – 2027',
       kind: 'Work-study · ongoing',
       product: 'OCPPVS · Troca',
       text: 'Polishing OCPPVS so it is pleasant to use every day, and working on the interface of Troca, a charging station management system.',
-    },
+    }),
   ],
   educationLabel: 'Alongside',
   education: [

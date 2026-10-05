@@ -93,7 +93,7 @@ Idée : le visiteur suit **une journée de randonnée**. Chaque section est un *
 | Matin | Le départ | Approche | Phrase « créateur de produits » (existant) |
 | Midi | Le sentier | Projets | Carte topo ; le point GPS devient un petit randonneur peint qui marche le long de l'itinéraire |
 | Après-midi | Le col | Le sac (méthode) | Fond peint d'un col au soleil d'après-midi, le sac posé dans l'herbe ; 5ᵉ objet : les pochettes de rangement = **un code rangé** |
-| Fin d'après-midi | Le refuge | Parcours | Profil d'altitude tracé au scroll : 4 ans chez Trialog en 5 paliers (2 stages, 3 ans d'alternance), formation en parallèle (BUT MMI, mastère Efrei), scoutisme présenté comme des compétences |
+| Fin d'après-midi | Le refuge | Parcours | Escalier de 5 cartes reliées par le sentier au scroll, chacune portant un élément peint : 4 ans chez Trialog en 5 paliers (2 stages, 3 ans d'alternance), formation en parallèle (BUT MMI, mastère Efrei), scoutisme présenté comme des compétences |
 | Nuit | Le bivouac | Équipement (stack) + Carnet de bord (qualité du code) | Feu de camp, tente éclairée, étoiles, lumière tamisée. Stack concrète groupée par usage ; carnet de bord = arborescence réelle du projet + pratiques de qualité vérifiables |
 | Aube | Le sommet | Contact | Lever de soleil sur une mer de nuages, randonneur au sommet ; « Et si la prochaine étape, on la faisait ensemble ? » |
 

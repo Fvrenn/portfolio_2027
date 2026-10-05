@@ -15,7 +15,7 @@ export function Altimeter() {
   return (
     <aside
       aria-hidden="true"
-      className="pointer-events-none fixed top-1/2 right-6 z-50 hidden -translate-y-1/2 flex-col items-center gap-2 lg:flex"
+      className="pointer-events-none fixed top-1/2 right-6 z-50 hidden -translate-y-1/2 flex-col items-center gap-2 xl:flex"
     >
       <div className="relative h-[200px] w-9 rounded-full border border-deck-border bg-deck shadow-object after:shadow-bevel after:absolute after:-inset-px after:rounded-full after:content-['']">
         <div className="absolute inset-y-4 left-1/2 flex -translate-x-1/2 flex-col justify-between">

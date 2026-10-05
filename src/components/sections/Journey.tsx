@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { RidgeEdge } from '@/components/decor/RidgeEdge'
 import { TopoLines } from '@/components/decor/TopoLines'
-import { AltitudeProfile } from '@/components/journey/AltitudeProfile'
 import { EducationBand } from '@/components/journey/EducationBand'
 import { JourneySteps } from '@/components/journey/JourneySteps'
 import { ScoutingCard } from '@/components/journey/ScoutingCard'
@@ -10,6 +9,7 @@ import { REFUGE_SCENE } from '@/components/scene/scenes'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { journeyContent } from '@/content/journey'
 import { SECTION_IDS } from '@/content/sections'
+import { useJourneyClimb } from '@/hooks/useJourneyClimb'
 import { useLocalized } from '@/hooks/useLocale'
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll'
 import { useSceneParallax } from '@/hooks/useSceneParallax'
@@ -17,8 +17,10 @@ import { useSceneParallax } from '@/hooks/useSceneParallax'
 export function Journey() {
   const sectionRef = useRef<HTMLElement>(null)
   const sceneRef = useRef<HTMLDivElement>(null)
+  const climbRef = useRef<HTMLDivElement>(null)
   useRevealOnScroll(sectionRef)
   useSceneParallax(sceneRef)
+  useJourneyClimb(climbRef)
 
   const { eyebrow, title, intro, company, steps, educationLabel, education, scouting } = useLocalized(journeyContent)
 
@@ -42,13 +44,10 @@ export function Journey() {
           <p data-reveal className="max-w-[640px] text-ink/70">
             <span className="font-serif text-xl text-ink">{company.name}</span> — {company.description}
           </p>
-          <div className="mt-8 max-lg:hidden">
-            <AltitudeProfile stepCount={steps.length} />
-          </div>
-          <div className="mt-6">
+          <div ref={climbRef}>
             <JourneySteps steps={steps} />
-            <EducationBand label={educationLabel} education={education} />
           </div>
+          <EducationBand label={educationLabel} education={education} />
           <ScoutingCard {...scouting} />
         </div>
         <div className="relative mt-[clamp(56px,8vw,80px)] h-[clamp(240px,45vh,420px)] bg-linear-to-b from-cream via-dusk-mid/70 to-night-sky" aria-hidden="true" />

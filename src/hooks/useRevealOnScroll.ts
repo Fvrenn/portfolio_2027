@@ -10,18 +10,20 @@ export function useRevealOnScroll(scopeRef: RefObject<HTMLElement | null>) {
     () => {
       const media = gsap.matchMedia()
       media.add(MOTION_ALLOWED_QUERY, () => {
-        gsap.utils.toArray<HTMLElement>(REVEAL_SELECTOR).forEach((element) => {
-          gsap.from(element, {
-            opacity: 0,
-            y: REVEAL_OFFSET_PX,
-            duration: 0.9,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: element, start: 'top 85%', toggleActions: 'play none none reverse' },
-          })
-        })
+        gsap.utils.toArray<HTMLElement>(REVEAL_SELECTOR).forEach(revealOnScroll)
       })
       return () => media.revert()
     },
     { scope: scopeRef },
   )
+}
+
+export function revealOnScroll(element: HTMLElement) {
+  gsap.from(element, {
+    opacity: 0,
+    y: REVEAL_OFFSET_PX,
+    duration: 0.9,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: element, start: 'top 85%', toggleActions: 'play none none reverse' },
+  })
 }

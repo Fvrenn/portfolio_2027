@@ -51,7 +51,7 @@ Le visiteur suit **une journée de randonnée**. Chaque section est un **lieu** 
 | Matin | Le départ | Approche | Phrase « créateur de produits », déjà faite |
 | Midi | Le sentier | Projets | La carte topographique reste. Le point GPS « Vous êtes ici » devient **un petit randonneur peint qui marche** le long de l'itinéraire |
 | Après-midi | Le col | Le sac (méthode) | Fond peint d'un col au soleil d'après-midi, avec le sac posé dans l'herbe. **5ᵉ objet : les pochettes de rangement**, pour « un code rangé comme mon sac » |
-| Fin d'après-midi | Le refuge | Parcours | Profil d'altitude tracé au scroll : 4 ans chez Trialog en 5 paliers (2 stages, 3 ans d'alternance), formation en parallèle (BUT MMI, mastère Efrei), scoutisme présenté comme des compétences |
+| Fin d'après-midi | Le refuge | Parcours | Escalier de 5 cartes reliées par le sentier au scroll, chacune portant un élément peint : 4 ans chez Trialog en 5 paliers (2 stages, 3 ans d'alternance), formation en parallèle (BUT MMI, mastère Efrei), scoutisme présenté comme des compétences |
 | Nuit | Le bivouac | Équipement (stack) et carnet de bord (qualité du code) | Feu de camp, tente éclairée, étoiles, lumière tamisée |
 | Aube | Le sommet | Contact | Lever de soleil sur une mer de nuages, randonneur au sommet. « Et si la prochaine étape, on la faisait ensemble ? » |
 
@@ -109,6 +109,8 @@ Le visiteur suit **une journée de randonnée**. Chaque section est un **lieu** 
 | `design/parcours/sommet-fond.png` | Prompt 6 → `sommet-<largeur>.webp` |
 | `design/parcours/sommet-perso.png` | Prompt 7 → `sommet-perso-<largeur>.webp` |
 | `design/parcours/refuge-fond.png` | Prompt 8 → `refuge-<largeur>.webp` |
+| `design/parcours/profil-crete.png` | Prompt 9, **non utilisé** |
+| `design/parcours/asset/*.png` | Éléments peints générés avec Copilot, un par étape du parcours, posés sur le haut des cartes en escalier (fleurs, sapins, chalet, rochers, cairn et drapeau ; `sapin.png` non utilisé) → `public/images/parcours/scenery/*.webp`, associés aux étapes dans `content/journey.ts` |
 
 Les scènes sont déclinées en 768 et 1536 px dans `public/images/parcours/` et déclarées une seule fois dans `src/components/scene/scenes.ts`.
 
@@ -213,6 +215,16 @@ Format paysage 1536 × 1024, même cadrage que l'image jointe, fond réellement 
 ```
 Format paysage 1536 × 1024, entièrement opaque. Un refuge de montagne en pierre et bois, au toit de lauzes, posé sur un replat d'alpage en fin d'après-midi : lumière dorée rasante venant de la droite, longues ombres, fenêtres légèrement éclairées. Le refuge occupe le tiers droit, avec un banc et un sac à dos orange posé contre le mur. Derrière, un sentier en lacets qui descend vers la vallée, et des sommets enneigés teintés d'orange. Le tiers gauche est calme et peu détaillé (ciel chaud et pente douce) pour y mettre du texte. Pas de personnage. Même style peint, même palette, ciel plus chaud que l'après-midi.
 ```
+
+### 4.10 Prompt 9 — `profil-crete.png`, la crête du parcours (fond transparent)
+
+Images jointes (2 maximum) : `design/calques/02-mountains.png` et `design/parcours/refuge-fond.png`.
+
+```
+Format paysage 1536 × 1024, fond réellement transparent au-dessus de la montagne. Une seule longue crête de montagne vue de profil, qui monte régulièrement du coin inférieur gauche jusqu'au haut du bord droit, sur toute la largeur de l'image. La ligne de crête est continue, sans surplomb ni pic isolé, avec cinq petits replats doux régulièrement espacés (vers 10 %, 30 %, 50 %, 70 % et 90 % de la largeur). Au début de la crête, sur la gauche, elle est à environ 85 % de la hauteur ; à droite, elle arrive à environ 15 % de la hauteur. La végétation évolue avec l'altitude : prairie d'alpage fleurie à gauche, puis forêt de sapins, puis éboulis et rochers, puis neige près du sommet à droite. Lumière dorée de fin d'après-midi venant de la droite. La montagne remplit tout le bas de l'image jusqu'au bord inférieur. Aucun personnage, aucun sentier, aucun ciel, aucun nuage : tout ce qui est au-dessus de la crête est transparent. Même style peint, même palette.
+```
+
+Image testée puis abandonnée : une peinture détourée sur le fond crème flottait « au milieu de rien ». Le parcours est finalement un escalier de cartes reliées par le pointillé du sentier, chaque carte portant un élément peint.
 
 ---
 

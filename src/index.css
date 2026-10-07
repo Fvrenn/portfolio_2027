@@ -42,17 +42,17 @@
   --color-gps: #2f7cf6;
   --color-dusk-mid: #a9668d;
   --color-col-grass: #696832;
-  --color-refuge-sky: #7e99bf;
-  --color-night-sky: #082448;
-  --color-night: #070e13;
+  --color-refuge-sky: #7a9ac5;
+  --color-night-sky: #04122e;
+  --color-night: #03080c;
   --color-campfire: #ffb35c;
-  --color-dawn-high: #042668;
-  --color-dawn-low: #1f3f7c;
+  --color-dawn-high: #0d2f71;
+  --color-dawn-low: #424174;
 
   --breakpoint-desktop: 68.8125rem;
 
   --font-sans: 'Figtree', sans-serif;
-  --font-serif: 'DM Serif Display', serif;
+  --font-serif: 'Erode', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
   --font-hand: 'Caveat', cursive;
 

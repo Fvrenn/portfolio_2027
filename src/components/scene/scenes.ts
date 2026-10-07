@@ -6,6 +6,7 @@ export const SCENE_FALLBACK_WIDTH = 1536
 export interface SceneLayer {
   path: string
   depth: number
+  scale?: number
 }
 
 export const COL_SCENE: SceneLayer[] = [{ path: `${SCENE_IMAGE_DIR}/col`, depth: 0 }]
@@ -17,7 +18,6 @@ export const BIVOUAC_SCENE: SceneLayer[] = [
   { path: `${SCENE_IMAGE_DIR}/bivouac-camp`, depth: 1 },
 ]
 
-export const SUMMIT_SCENE: SceneLayer[] = [
-  { path: `${SCENE_IMAGE_DIR}/sommet`, depth: 0.4 },
-  { path: `${SCENE_IMAGE_DIR}/sommet-perso`, depth: 1 },
-]
+export const SUMMIT_SKY_SCENE: SceneLayer[] = [{ path: `${SCENE_IMAGE_DIR}/sommet`, depth: 0.4 }]
+
+export const SUMMIT_HIKER_SCENE: SceneLayer[] = [{ path: `${SCENE_IMAGE_DIR}/sommet-perso`, depth: 1, scale: 0.9 }]

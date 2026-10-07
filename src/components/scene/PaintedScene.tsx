@@ -12,7 +12,7 @@ interface PaintedSceneProps {
 export function PaintedScene({ layers, imageClassName, className }: PaintedSceneProps) {
   return (
     <div className={cn('pointer-events-none absolute inset-0 overflow-hidden', className)} aria-hidden="true">
-      {layers.map(({ path, depth }) => (
+      {layers.map(({ path, depth, scale = 1 }) => (
         <div key={path} data-scene-depth={depth} className="absolute inset-x-0 -inset-y-8 will-change-transform">
           <img
             src={toSizedSrc(path, SCENE_FALLBACK_WIDTH)}
@@ -23,7 +23,8 @@ export function PaintedScene({ layers, imageClassName, className }: PaintedScene
             height={PAINTING_HEIGHT}
             loading="lazy"
             decoding="async"
-            className={cn('size-full object-cover', imageClassName)}
+            style={{ scale }}
+            className={cn('size-full origin-bottom-right object-cover', imageClassName)}
           />
         </div>
       ))}

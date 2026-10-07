@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { RidgeEdge } from '@/components/decor/RidgeEdge'
 import { PaintedScene } from '@/components/scene/PaintedScene'
-import { SUMMIT_SCENE } from '@/components/scene/scenes'
+import { SUMMIT_HIKER_SCENE, SUMMIT_SKY_SCENE } from '@/components/scene/scenes'
 import { contactContent } from '@/content/contact'
 import { SECTION_IDS } from '@/content/sections'
 import { useLocalized } from '@/hooks/useLocale'
@@ -49,8 +49,9 @@ export function Summit() {
         </div>
       </div>
       <div className="pointer-events-none relative -mt-[clamp(24px,8vw,80px)] aspect-[4/5] w-full sm:aspect-[4/3] lg:absolute lg:inset-0 lg:mt-0 lg:aspect-auto">
-        <PaintedScene layers={SUMMIT_SCENE} imageClassName="object-[85%_bottom]" />
+        <PaintedScene layers={SUMMIT_SKY_SCENE} imageClassName="object-[85%_bottom]" />
         <div className="absolute inset-x-0 top-0 h-2/5 bg-linear-to-b from-dawn-high to-transparent" />
+        <PaintedScene layers={SUMMIT_HIKER_SCENE} imageClassName="object-[85%_bottom]" />
       </div>
       <footer className="relative z-1 mt-auto flex flex-wrap justify-between gap-2 bg-dawn-low/60 px-6 py-6 font-mono text-xs text-cream-text/80 backdrop-blur-sm">
         <span>{footer.signature}</span>

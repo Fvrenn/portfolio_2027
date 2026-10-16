@@ -3,7 +3,7 @@ import { gsap, useGSAP } from '@/lib/gsap'
 import { MOTION_ALLOWED_QUERY } from './useMediaQuery'
 
 const PINNED_LAYOUT_QUERY = `${MOTION_ALLOWED_QUERY} and (min-width: 1024px)`
-const INACTIVE_ENTRY_OPACITY = 0.45
+const INACTIVE_ENTRY_OPACITY = 0.6
 const DROP_START_OFFSET = -0.55
 const HOVER_OFFSET = -0.1
 const INSIDE_OFFSET = 0.16

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Portfolio de Timothé — site vitrine **React 19 + Vite 7** (SPA, pas de routeur, pas de backend). Stack : TypeScript 5.8 (strict), Tailwind 4 (`@tailwindcss/vite`, tokens dans `src/index.css`), GSAP 3 + ScrollTrigger (`@gsap/react`, via `@/lib/gsap`), Lenis (scroll lissé), d3-contour (courbes de niveau). Alias `@/` → `src/`.
+Portfolio de Timothé — site vitrine **React 19 + Vite 7** (SPA, pas de backend). Routeur : React Router 7 en mode déclaratif (`BrowserRouter`), routes dans `src/lib/routes.ts`, pages dans `src/pages/` (accueil et page projet « La halte », chargée à la demande). Stack : TypeScript 5.8 (strict), Tailwind 4 (`@tailwindcss/vite`, tokens dans `src/index.css`), GSAP 3 + ScrollTrigger (`@gsap/react`, via `@/lib/gsap`), Lenis (scroll lissé), d3-contour (courbes de niveau). Alias `@/` → `src/`.
 
 ## Contenu et objectifs
 

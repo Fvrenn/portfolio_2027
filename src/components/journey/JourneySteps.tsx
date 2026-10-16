@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { LuggageTag } from '@/components/ui/LuggageTag'
 
 interface StepScenery {
   src: string
@@ -54,7 +55,7 @@ function StepCard({ step, number }: { step: JourneyStep; number: number }) {
   const { period, kind, product, text, scenery } = step
 
   return (
-    <div className="relative h-full rounded-2xl bg-white p-5 pt-6 shadow-object">
+    <div className="relative h-full">
       <img
         src={scenery.src}
         alt=""
@@ -65,19 +66,21 @@ function StepCard({ step, number }: { step: JourneyStep; number: number }) {
         decoding="async"
         data-step-scenery
         style={{ '--scenery-scale': scenery.scale } as CSSProperties}
-        className="absolute bottom-[calc(100%-10px)] left-1/2 h-[calc(var(--scenery-scale)*clamp(56px,6vw,84px))] w-auto max-w-[90%] -translate-x-1/2 object-contain object-bottom"
+        className="absolute bottom-[calc(100%-10px)] left-1/2 z-1 h-[calc(var(--scenery-scale)*clamp(56px,6vw,84px))] w-auto max-w-[90%] -translate-x-1/2 object-contain object-bottom"
       />
       <span
         data-step-marker
-        className="absolute -top-4 -left-4 grid size-9 place-items-center rounded-full border-[3px] border-white bg-trail font-mono text-sm font-medium text-white shadow-object"
+        className="absolute -top-4 -left-4 z-1 grid size-9 place-items-center rounded-full border-[3px] border-white bg-trail font-mono text-sm font-medium text-white shadow-object"
         aria-hidden="true"
       >
         {number}
       </span>
-      <p className="font-mono text-[11px] tracking-[1.4px] text-trail-dark uppercase">{period}</p>
-      <h3 className="mt-1 font-serif text-2xl leading-tight">{product}</h3>
-      <p className="mt-0.5 font-mono text-[11px] text-ink/50">{kind}</p>
-      <p className="mt-3 text-[15px] text-ink/75">{text}</p>
+      <LuggageTag className="h-full">
+        <p className="pt-2 font-mono text-[11px] tracking-[1.4px] text-brass-deep uppercase">{period}</p>
+        <h3 className="mt-1 font-serif text-2xl leading-tight">{product}</h3>
+        <p className="mt-0.5 font-mono text-[11px] text-ink/60">{kind}</p>
+        <p className="mt-3 text-[15px] text-ink/80">{text}</p>
+      </LuggageTag>
     </div>
   )
 }

@@ -9,7 +9,7 @@ interface ScoutingCardProps {
 
 export function ScoutingCard({ eyebrow, title, facts, takeaway, linkLabel, href }: ScoutingCardProps) {
   return (
-    <article data-reveal className="mt-[clamp(40px,6vw,64px)] grid gap-6 rounded-3xl bg-white/70 p-[clamp(20px,3vw,32px)] shadow-object backdrop-blur-sm lg:grid-cols-[0.8fr_1.2fr]">
+    <article data-reveal className="mt-[clamp(40px,6vw,64px)] grid gap-6 border-t-[3px] border-dashed border-trail pt-[clamp(24px,3vw,32px)] lg:grid-cols-[0.8fr_1.2fr]">
       <div>
         <p className="font-mono text-[11px] tracking-[1.4px] text-trail-dark uppercase">{eyebrow}</p>
         <h3 className="mt-1.5 font-serif text-[clamp(28px,3vw,38px)] leading-tight">{title}</h3>

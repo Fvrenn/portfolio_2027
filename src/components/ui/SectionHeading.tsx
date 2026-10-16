@@ -3,7 +3,7 @@ import { cn } from '@/lib/cn'
 interface SectionHeadingProps {
   eyebrow: string
   title: string
-  intro: string
+  intro?: string
   className?: string
 }
 
@@ -15,7 +15,7 @@ export function SectionHeading({ eyebrow, title, intro, className }: SectionHead
         {eyebrow}
       </p>
       <h2 className="mt-3 font-serif text-[clamp(44px,6vw,84px)] leading-none">{title}</h2>
-      <p className="mt-5 text-lg text-ink/75">{intro}</p>
+      {intro && <p className="mt-5 text-lg text-ink/75">{intro}</p>}
     </div>
   )
 }

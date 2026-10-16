@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import 'lenis/dist/lenis.css';
 
+@custom-variant tall (@media (min-height: 720px));
+
 @theme {
   --color-sky-from: #71b7f4;
   --color-cream: #f8f9f6;
@@ -25,6 +27,12 @@
   --color-brass-deep: #5b3f14;
   --color-paper: #f7eed6;
   --color-paper-shade: #e2cfa2;
+  --color-kraft: #d8b98a;
+  --color-kraft-dark: #a9844f;
+  --color-notebook: #fbf6e8;
+  --color-sign: #f2c200;
+  --color-lcd: #cdd5bd;
+  --color-lcd-ink: #26301f;
   --color-needle-tail: #2a2a2a;
   --color-needle-tail-shade: #121212;
 
@@ -48,6 +56,9 @@
   --color-campfire: #ffb35c;
   --color-dawn-high: #0d2f71;
   --color-dawn-low: #424174;
+  --color-golden-hour: #f6d6a6;
+  --color-clothespin: #c08a52;
+  --color-golden-low: #ee9f6e;
 
   --breakpoint-desktop: 68.8125rem;
 
@@ -66,6 +77,8 @@
   --animate-tag-sway: tag-sway 4.5s ease-in-out infinite alternate;
   --animate-tag-swap: tag-swap 320ms var(--ease-roll) both;
   --animate-walk-bob: walk-bob 420ms ease-in-out infinite alternate;
+  --animate-eagle-soar: eagle-soar 22s ease-in-out infinite;
+  --animate-polaroid-sway: polaroid-sway 5s ease-in-out infinite alternate;
 
   @keyframes sun-turn {
     to {
@@ -92,6 +105,57 @@
     }
     to {
       rotate: 1deg;
+    }
+  }
+  @keyframes polaroid-sway {
+    from {
+      rotate: -2.5deg;
+    }
+    to {
+      rotate: 2.5deg;
+    }
+  }
+  @keyframes eagle-soar {
+    0%,
+    100% {
+      translate: -260% 0;
+      scale: 1 1;
+      rotate: 0deg;
+    }
+    24% {
+      translate: 0 30%;
+      scale: 1.12 1.12;
+      rotate: 5deg;
+    }
+    46% {
+      translate: 260% 0;
+      scale: 1 1;
+      rotate: 0deg;
+    }
+    52% {
+      translate: 270% -15%;
+      scale: 0.08 0.85;
+      rotate: -10deg;
+    }
+    58% {
+      translate: 240% -30%;
+      scale: -0.75 0.75;
+      rotate: -4deg;
+    }
+    76% {
+      translate: 0 -45%;
+      scale: -0.68 0.68;
+      rotate: -3deg;
+    }
+    92% {
+      translate: -250% -25%;
+      scale: -0.75 0.75;
+      rotate: 0deg;
+    }
+    96% {
+      translate: -270% -10%;
+      scale: 0.08 0.85;
+      rotate: 10deg;
     }
   }
   @keyframes walk-bob {
@@ -149,6 +213,89 @@
   background: radial-gradient(circle at 50% 42%, var(--color-paper) 55%, var(--color-paper-shade) 100%);
 }
 
+@utility shape-tag {
+  clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
+}
+
+@utility shape-sign {
+  clip-path: polygon(0 0, calc(100% - 34px) 0, 100% 50%, calc(100% - 34px) 100%, 0 100%);
+}
+
+@utility edge-torn {
+  clip-path: polygon(0 6px, 6% 0, 13% 5px, 21% 1px, 30% 6px, 39% 0, 48% 4px, 57% 1px, 66% 6px, 75% 0, 84% 5px, 92% 1px, 100% 5px, 100% 100%, 0 100%);
+}
+
+@utility bg-kraft {
+  background-color: var(--color-kraft);
+  background-image: radial-gradient(rgb(255 255 255 / 0.14) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+@utility bg-notebook {
+  --rule: 28px;
+  background-color: var(--color-notebook);
+  background-image:
+    linear-gradient(90deg, transparent 32px, color-mix(in srgb, var(--color-alert) 45%, transparent) 32px 33.5px, transparent 33.5px),
+    repeating-linear-gradient(180deg, transparent 0 calc(var(--rule) - 1px), color-mix(in srgb, var(--color-topo-index) 32%, transparent) calc(var(--rule) - 1px) var(--rule));
+  background-position:
+    0 0,
+    0 18px;
+}
+
+@utility frame-topo {
+  position: relative;
+  border: 1.5px solid var(--color-ink);
+  padding: 4px;
+  background-color: var(--color-cream);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid var(--color-trail);
+  }
+  &::before {
+    top: -9px;
+    left: -9px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  &::after {
+    right: -9px;
+    bottom: -9px;
+    border-top: 0;
+    border-left: 0;
+  }
+}
+
+@utility shadow-device {
+  box-shadow:
+    inset 0 5px 7.3px 2px var(--color-deck-highlight),
+    inset -2px -10px 2.3px 0 var(--color-deck-shadow),
+    0 10px 14px rgb(0 0 0 / 0.18);
+}
+
+@utility shadow-screen {
+  box-shadow: inset 0 3px 6px rgb(0 0 0 / 0.28);
+}
+
+@utility cover-canvas {
+  --canvas-w: max(100vw, 150vh);
+  position: absolute;
+  aspect-ratio: 3 / 2;
+  width: var(--canvas-w);
+  left: calc((100vw - var(--canvas-w)) * var(--focus-x, 0.5));
+  top: calc((100vh - var(--canvas-w) / 1.5) * var(--focus-y, 0.5));
+}
+
+@utility mask-binoculars {
+  mask-image:
+    radial-gradient(circle var(--lens) at calc(var(--view-x) - var(--lens) * 0.82) var(--view-y), #000 97%, transparent 100%),
+    radial-gradient(circle var(--lens) at calc(var(--view-x) + var(--lens) * 0.82) var(--view-y), #000 97%, transparent 100%);
+}
+
 @utility shadow-object {
   box-shadow: 0 11px 9.6px 0 rgb(0 0 0 / 0.25);
 }
@@ -158,4 +305,22 @@
   body {
     @apply bg-cream font-sans text-ink;
   }
+}
+
+.has-gps-cursor,
+.has-gps-cursor * {
+  cursor: none;
+}
+
+.has-gps-cursor :is(input, textarea, select, [contenteditable]) {
+  cursor: auto;
+}
+
+.has-gps-cursor:has(dialog[open]),
+.has-gps-cursor:has(dialog[open]) * {
+  cursor: revert-layer;
+}
+
+.has-gps-cursor:has(dialog[open]) [data-gps-cursor] {
+  display: none;
 }

@@ -1,44 +1,40 @@
-import { Altimeter } from '@/components/altimeter/Altimeter'
-import { Hero } from '@/components/hero/Hero'
+import { lazy, Suspense } from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
+import { GpsCursor } from '@/components/cursor/GpsCursor'
 import { LocaleProvider } from '@/components/i18n/LocaleProvider'
 import { SiteNav } from '@/components/navigation/SiteNav'
-import { Approach } from '@/components/sections/Approach'
-import { Bag } from '@/components/sections/Bag'
-import { Bivouac } from '@/components/sections/Bivouac'
-import { Journey } from '@/components/sections/Journey'
-import { Summit } from '@/components/sections/Summit'
-import { Trail } from '@/components/sections/Trail'
-import { navigationContent } from '@/content/navigation'
-import { useLocale } from '@/hooks/useLocale'
 import { useSmoothScroll } from '@/hooks/useSmoothScroll'
+import { ABOUT_PATH, HOME_PATH, PROJECT_PATH } from '@/lib/routes'
+import { HomePage } from '@/pages/HomePage'
 
-const DOCUMENT_TITLES = { fr: navigationContent.fr.documentTitle, en: navigationContent.en.documentTitle }
+const ProjectPage = lazy(() => import('@/pages/ProjectPage'))
+const AboutPage = lazy(() => import('@/pages/AboutPage'))
 
 export default function App() {
   return (
-    <LocaleProvider documentTitles={DOCUMENT_TITLES}>
-      <Page />
-    </LocaleProvider>
+    <BrowserRouter>
+      <LocaleProvider>
+        <Shell />
+      </LocaleProvider>
+    </BrowserRouter>
   )
 }
 
-function Page() {
-  const { locale } = useLocale()
+function Shell() {
   useSmoothScroll()
 
   return (
     <>
       <SiteNav />
-      <main key={locale}>
-        <Hero />
-        <Approach />
-        <Trail />
-        <Bag />
-        <Journey />
-        <Bivouac />
-        <Summit />
-      </main>
-      <Altimeter />
+      <Suspense>
+        <Routes>
+          <Route path={HOME_PATH} element={<HomePage />} />
+          <Route path={PROJECT_PATH} element={<ProjectPage />} />
+          <Route path={ABOUT_PATH} element={<AboutPage />} />
+          <Route path="*" element={<Navigate to={HOME_PATH} replace />} />
+        </Routes>
+      </Suspense>
+      <GpsCursor />
     </>
   )
 }

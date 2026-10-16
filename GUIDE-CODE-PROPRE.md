@@ -138,6 +138,20 @@ Laisser un fichier un peu plus propre qu'on ne l'a trouvé : renommer une variab
 - [ ] Pas de valeur magique, pas de couleur en dur, pas de code mort, pas de `console.log`, pas de `any`.
 - [ ] `npm run build` passe.
 
+### 3.9 Les matières (pas de carte blanche générique)
+Le site n'utilise **pas** de carte blanche arrondie avec ombre douce. Chaque contenu prend la forme d'un objet du sentier, via un composant de `components/ui/` :
+
+| Matière | Composant | Pour quoi |
+|---|---|---|
+| Fiche topo | `TopoSheet` | Fiches factuelles : projets, fiche d'observation, fonctionnalités, expédition |
+| Page de carnet | `NotebookPage` | Réflexions : problème, décisions, étapes de la carte punaisée, notes perso |
+| Panneau de randonnée | `TrailSign` dans `Signpost` | Liens de navigation entre pages (temps de marche via `lib/hiking.ts`) |
+| Écran d'appareil | `DeviceScreen` | Chiffres et relevés |
+| Étiquette bagage | `LuggageTag` | Objets du sac, étapes du parcours, titres posés sur la table |
+| Sans carte | — | Listes et textes simples : séparés par le pointillé orange du sentier |
+
+Les formes et textures vivent dans `index.css` (`frame-topo`, `bg-notebook`, `edge-torn`, `bg-kraft`, `shape-tag`, `shape-sign`, `shadow-device`). Une forme découpée (`clip-path`) prend son ombre sur un parent (`drop-shadow`), jamais via `box-shadow`.
+
 ---
 
 ## 4. Où ranger quoi
@@ -145,12 +159,13 @@ Laisser un fichier un peu plus propre qu'on ne l'a trouvé : renommer une variab
 ```
 src/
 ├── main.tsx            ← point d'entrée (montage React)
-├── App.tsx             ← assemble les sections de la page
+├── App.tsx             ← routeur : navigation commune et routes
+├── pages/              ← une page par route (HomePage, ProjectPage)
 ├── index.css           ← Tailwind, tokens @theme, @utility
 ├── content/            ← textes et données affichés, un fichier par section
 ├── components/
 │   ├── ui/             ← petites briques d'affichage réutilisables
-│   ├── sections/       ← sections de la page (Approach, Trail, Bag…)
+│   ├── sections/       ← sections de l'accueil (Approach, Trail, Bag…)
 │   └── <bloc>/         ← composants d'un bloc complexe (hero/, compass/)
 ├── hooks/              ← hooks React réutilisables ou d'animation
 └── lib/                ← fonctions pures
@@ -160,7 +175,8 @@ public/                 ← fichiers servis tels quels (favicon, images)
 | Besoin | Emplacement | Exemple |
 |---|---|---|
 | Texte ou donnée affichée | `content/<section>.ts` | `heroContent` |
-| Nouvelle section de page | `components/sections/` + ajout dans `App.tsx` | `Bag` |
+| Nouvelle section de l'accueil | `components/sections/` + ajout dans `pages/HomePage.tsx` | `Bag` |
+| Nouvelle page | `pages/` + chemin dans `lib/routes.ts` + `<Route>` dans `App.tsx` | `ProjectPage` |
 | Composant réutilisé partout | `components/ui/` | `SplitLetters` |
 | Composant propre à un bloc | `components/<bloc>/` | `compass/Needle` |
 | État ou effet réutilisable | `hooks/` | `useMediaQuery` |

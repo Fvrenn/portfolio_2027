@@ -3,19 +3,13 @@ import { LocaleContext } from '@/i18n/LocaleContext'
 import type { Locale } from '@/i18n/locale'
 import { readStoredLocale, storeLocale } from '@/i18n/localeStorage'
 
-interface LocaleProviderProps {
-  documentTitles: Record<Locale, string>
-  children: ReactNode
-}
-
-export function LocaleProvider({ documentTitles, children }: LocaleProviderProps) {
+export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocale] = useState<Locale>(readStoredLocale)
 
   useEffect(() => {
     document.documentElement.lang = locale
-    document.title = documentTitles[locale]
     storeLocale(locale)
-  }, [locale, documentTitles])
+  }, [locale])
 
   const value = useMemo(() => ({ locale, setLocale }), [locale])
   return <LocaleContext value={value}>{children}</LocaleContext>

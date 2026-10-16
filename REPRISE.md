@@ -96,6 +96,40 @@ Le visiteur suit **une journée de randonnée**. Chaque section est un **lieu** 
 5. [ ] Remplir les vrais projets dans `src/content/projects.ts` : textes FR + EN, captures 1440 × 900 dans `design/projets/`.
 6. [ ] Remplir le contact dans `src/content/contact.ts` : ce que tu recherches, e-mail, LinkedIn, GitHub, CV en PDF dans `public/`.
 
+### 3.7 Remplir une page projet « La halte »
+
+Tout se remplit dans `src/content/projectDetails.ts` (textes FR et EN) ; les textes entre crochets sont des consignes à remplacer. Le titre, l'étape, l'adresse affichée et la stack viennent de `src/content/projects.ts` (même `slug`).
+
+| Champ | Où ça s'affiche | Ce qu'il faut écrire |
+|---|---|---|
+| `oneLiner` | Fiche d'observation | 1 phrase : ce que fait le produit et pour qui, sans jargon |
+| `audience`, `role`, `duration`, `outcome` | Fiche d'observation | Quelques mots chacun ; `outcome` avec un vrai chiffre |
+| `problem` | La brume | 2 ou 3 phrases sur l'avant, pour qui, pourquoi ça comptait ; + ce qu'ils faisaient à la place |
+| `features` (5) | Les jumelles | Titre court + 1 ou 2 phrases bénéfice d'abord. Les 5 repères du panorama : lac, forêt, cascade, hameau, glacier |
+| `decisions` (2 ou 3) | Le carnet | Ce que tu as choisi / l'option écartée / pourquoi (contrainte, utilisateur, compromis) |
+| `readings` (3) | Les relevés | 3 chiffres réels (valeur dans `readingValues`, unité et libellé dans le texte) |
+| `learned` | Le soleil baisse | 2 ou 3 phrases honnêtes : appris, erreur corrigée, à refaire autrement |
+| `links.demo` | Essayer | Adresse de la démo (ex. `/demos/flambeau/`, servie depuis `public/demos/flambeau/`) ; vide = « Démo à venir » |
+| `links.code`, `links.live` | Fiche d'observation | Dépôt et site en ligne ; vide = bouton masqué |
+| `video` | Essayer | Vidéo de 20 à 30 s muette en boucle (ex. `/videos/flambeau.mp4`) ; sinon la capture du projet |
+| `screenshots` | Les jumelles | Une capture 1440 × 900 par repère, dans `public/images/projects/<projet>/` |
+| `gallery` | Les clichés | 5 à 8 captures (`desktop` en 1440 × 900, `mobile` en 390 × 844), chacune avec une légende courte (`caption`) et une description (`alt`) |
+
+La démo est un site statique avec données inventées : aucune donnée réelle. Elle s'ouvre dans une fenêtre au clic, se recharge avec « Réinitialiser ».
+
+**Hébergement** : le site a maintenant des adresses comme `/projets/flambeau`. L'hébergeur doit renvoyer `index.html` pour toute adresse inconnue (réglage « SPA » ou « rewrite vers index.html »), sinon un lien direct vers une page projet donnera une erreur 404.
+
+### 3.8 Remplir la page « À propos »
+
+Tout se remplit dans `src/content/about.ts` (FR et EN) ; les textes entre crochets sont des consignes à remplacer.
+
+- **Photos** : 6 pour le fil à linge (`clothesline.photos`) et 3 pour le Mont Buet (`camp.expedition.photos`). Naturelles et fun, au moins une avec le visage bien visible, sans lunettes de soleil ; **aucun jeune scout reconnaissable**. Format carré conseillé, dans `public/images/about/photos/` (elles seront publiques, y compris sur GitHub). Mettre le chemin dans `src`, une légende courte et vraie dans `caption`, une description dans `alt`.
+- **Mont Buet** : date, ton rôle, une anecdote (`camp.expedition.text`). Les chiffres (240 km, 3 096 m, 2 jours, 1 éclipse) sont dans `EXPEDITION_VALUES`.
+- **Écussons** : compléter les preuves entre crochets (organiser, animer, équipe régionale).
+- **Carte punaisée** : ce que tu as codé en premier en seconde.
+- **Cartes perso** : ce que tu apprends, une citation, ce que tu écoutes.
+- **Prochain départ** : ce que tu recherches (contrat, rythme, zone).
+
 ### 3.6 Images déjà générées
 
 | Fichier | Statut |
@@ -110,6 +144,8 @@ Le visiteur suit **une journée de randonnée**. Chaque section est un **lieu** 
 | `design/parcours/sommet-perso.png` | Prompt 7 → `sommet-perso-<largeur>.webp` |
 | `design/parcours/refuge-fond.png` | Prompt 8 → `refuge-<largeur>.webp` |
 | `design/parcours/profil-crete.png` | Prompt 9, **non utilisé** |
+| `design/contact/*.png` | Scène du camp de base (page À propos) → `public/images/about/` ; écussons découpés en 6 fichiers |
+| `design/detail/*.png` | Prompts 4.11, scène commune de « La halte » → `public/images/halte/` (damier retiré des deux personnages, brume découpée en 4 nappes ; originaux `*-damier.png` et `aigle-variante.png` gardés) |
 | `design/parcours/asset/*.png` | Éléments peints générés avec Copilot, un par étape du parcours, posés sur le haut des cartes en escalier (fleurs, sapins, chalet, rochers, cairn et drapeau ; `sapin.png` non utilisé) → `public/images/parcours/scenery/*.webp`, associés aux étapes dans `content/journey.ts` |
 
 Les scènes sont déclinées en 768 et 1536 px dans `public/images/parcours/` et déclarées une seule fois dans `src/components/scene/scenes.ts`.
@@ -225,6 +261,59 @@ Format paysage 1536 × 1024, fond réellement transparent au-dessus de la montag
 ```
 
 Image testée puis abandonnée : une peinture détourée sur le fond crème flottait « au milieu de rien ». Le parcours est finalement un escalier de cartes reliées par le pointillé du sentier, chaque carte portant un élément peint.
+
+### 4.11 La halte (page projet) — scène commune
+
+Joindre au message de contexte : `design/parcours/refuge-fond.png` (style) et `design/reference/perso-reference.png` (personnage). Pour les images avec le personnage, joindre aussi `design/sac/sac-ferme.png`.
+
+Message de contexte :
+```
+Je crée des illustrations pour mon portfolio web : une page où un randonneur fait une pause sur un belvédère pour observer la vallée. Les images sont des calques superposés et animés.
+STYLE (obligatoire pour toutes les images) : peinture gouache et aquarelle sur papier, texture granuleuse visible, coups de pinceau apparents, aplats doux, contours légèrement irréguliers, couleurs franches et modernes (bleus profonds, vert sapin, touches de jaune et d'orange). Pas de rendu photoréaliste, pas de 3D, pas d'effet vieilli ni sépia. La première image jointe donne le style.
+PERSONNAGE : celui de la seconde image jointe, toujours identique.
+TECHNIQUE : quand je dis « transparent », exporte en PNG avec vraie transparence (canal alpha), sans damier dessiné ni fond de couleur. Aucun texte, logo ou signature.
+Réponds juste « OK » et attends.
+```
+
+1. `halte-fond.png` (opaque)
+```
+Format paysage 1536 × 1024, entièrement opaque. Vue depuis un belvédère en hauteur sur une large vallée de montagne, en fin de matinée, lumière claire venant de la droite. Cinq repères bien distincts et répartis sur toute la largeur, chacun bien séparé des autres : à gauche un lac glaciaire turquoise, puis une grande forêt de sapins, au centre une cascade sur une falaise, puis un petit hameau de chalets en pierre, à droite un grand sommet enneigé avec son glacier. Le ciel en haut est calme et dégagé. Le bas de l'image est le rebord herbeux et rocheux du belvédère, avec un replat dégagé en bas à gauche où un personnage sera assis (laisser vide). Pas de personnage. Même style peint.
+```
+
+2. `halte-perso.png` (transparent) — joindre `halte-fond.png`, `perso-reference.png`, `sac-ferme.png`
+```
+Format paysage 1536 × 1024, même cadrage que la première image jointe. Uniquement le premier plan : un gros rocher plat en bas à gauche, et le personnage de la deuxième image assis dessus, vu de dos de trois quarts, regardant la vallée avec des jumelles portées à ses yeux. Son sac à dos est posé au sol à côté de lui : c'est EXACTEMENT le sac de la troisième image (corps orange, veste bleue roulée sur le dessus, poches grises en bas). Même lumière que le fond. Même style peint, pas de rendu photoréaliste. Tout le reste est transparent.
+```
+
+3. `halte-perso-debout.png` (transparent) — joindre `halte-perso.png`, `perso-reference.png`, `sac-ferme.png`
+```
+Retouche la première image jointe : garde EXACTEMENT le même rocher, au même endroit et à la même taille, et le même cadrage. Le personnage est maintenant debout à côté du rocher, le sac à dos sur le dos (EXACTEMENT le sac de la troisième image), les jumelles autour du cou, tourné vers la droite comme s'il reprenait la route. Même style peint, pas de rendu photoréaliste. Tout le reste est transparent.
+```
+
+4. `brume.png` (transparent)
+```
+Format paysage 1536 × 1024. Quatre nappes de brume de montagne horizontales et allongées, blanches légèrement bleutées, douces et vaporeuses, chacune entière et bien séparée des autres par du vide. Même style peint. Fond transparent.
+```
+
+5. `marmotte.png` (transparent)
+```
+Format carré 1024 × 1024. Une marmotte des Alpes dressée sur ses pattes arrière, vue de trois quarts, curieuse, entière, centrée, sans sol ni décor. Même style peint. Fond transparent.
+```
+
+6. `aigle.png` (transparent)
+```
+Format carré 1024 × 1024. Un aigle royal en vol plané, ailes grandes ouvertes, vu de côté et légèrement de dessous, entier, centré, sans décor. Même style peint. Fond transparent.
+```
+
+7. `chamois.png` (transparent)
+```
+Format carré 1024 × 1024. Un chamois debout de profil, tourné vers la gauche, sur une petite avancée rocheuse, entier, centré. Même style peint. Fond transparent.
+```
+
+8. `carnet.png` (transparent)
+```
+Format paysage 1536 × 1024. Un carnet de terrain ouvert à plat, vu du dessus, couverture en toile vert sapin, pages crème claire COMPLÈTEMENT VIERGES (aucun texte, aucun dessin, aucune ligne), un élastique orange et un crayon posé à côté. Propre et neuf : pas d'effet vieilli, pas de taches, pas de papier jauni. Même style peint. Fond transparent.
+```
 
 ---
 

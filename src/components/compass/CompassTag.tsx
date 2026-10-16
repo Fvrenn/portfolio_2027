@@ -18,12 +18,10 @@ interface CompassTagProps {
   className?: string
 }
 
-const TAG_SHAPE = '[clip-path:polygon(14px_0,100%_0,100%_100%,14px_100%,0_calc(100%-14px),0_14px)]'
-
 export function CompassTag({ waypoint, headingLabel, headingDeg, cardinalPoints, className }: CompassTagProps) {
   return (
     <a href={waypoint.href} className={cn('group block origin-[0%_50%] drop-shadow-md motion-safe:animate-tag-sway hover:[animation-play-state:paused]', className)}>
-      <div className={cn('bg-paper relative w-[178px] py-3 pr-3 pl-7 text-ink transition-transform duration-300 ease-spring group-hover:translate-x-1', TAG_SHAPE)}>
+      <div className={cn('bg-paper relative w-[178px] py-3 pr-3 pl-7 text-ink transition-transform duration-300 ease-spring group-hover:translate-x-1 shape-tag')}>
         <span className="absolute top-1/2 left-2.5 size-2.5 -translate-y-1/2 rounded-full bg-brass-dark shadow-[inset_0_1px_1px_rgb(0_0_0/0.5)]" />
         <div key={waypoint.bearingDeg} className="motion-safe:animate-tag-swap">
           <p className="flex items-center gap-1.5 font-mono text-[9px] tracking-[1.4px] text-ink/70 uppercase">

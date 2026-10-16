@@ -1,16 +1,16 @@
 import { useRef } from 'react'
-import { ALTITUDE_RANGE, altimeterContent } from '@/content/altimeter'
+import { altimeterContent, type AltitudeRange } from '@/content/altimeter'
 import { useLocale } from '@/hooks/useLocale'
 import { useAltimeter } from '@/hooks/useAltimeter'
 import { toAltitudeLabel } from '@/lib/format'
 
 const TICK_COUNT = 11
 
-export function Altimeter() {
+export function Altimeter({ range }: { range: AltitudeRange }) {
   const markerRef = useRef<HTMLSpanElement>(null)
   const valueRef = useRef<HTMLSpanElement>(null)
   const { locale } = useLocale()
-  useAltimeter({ markerRef, valueRef }, ALTITUDE_RANGE, locale)
+  useAltimeter({ markerRef, valueRef }, range, locale)
 
   return (
     <aside
@@ -31,7 +31,7 @@ export function Altimeter() {
       <p className="flex flex-col items-center rounded-2xl border border-deck-border bg-deck px-2.5 py-1.5 font-mono text-ink shadow-object">
         <span className="text-[9px] tracking-[1.4px] text-ink/60 uppercase">{altimeterContent[locale].label}</span>
         <span ref={valueRef} className="text-[11px] tabular-nums">
-          {toAltitudeLabel(ALTITUDE_RANGE.baseAltitudeM, locale)}
+          {toAltitudeLabel(range.baseAltitudeM, locale)}
         </span>
       </p>
     </aside>

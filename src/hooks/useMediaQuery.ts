@@ -3,6 +3,7 @@ import { useSyncExternalStore } from 'react'
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
 export const MOTION_ALLOWED_QUERY = '(prefers-reduced-motion: no-preference)'
 export const NARROW_VIEWPORT_QUERY = '(max-width: 639px)'
+export const FINE_POINTER_QUERY = '(hover: hover) and (pointer: fine)'
 
 export function useMediaQuery(query: string): boolean {
   return useSyncExternalStore(

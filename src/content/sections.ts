@@ -8,4 +8,8 @@ export const SECTION_IDS = {
   contact: 'contact',
 }
 
+export const HALTE_SECTION_IDS = {
+  demo: 'demo',
+}
+
 export const toAnchor = (id: string) => `#${id}`

@@ -4,3 +4,4 @@ dist
 .DS_Store
 exemple/
 design/**/*_upscayl_*
+design/reference/

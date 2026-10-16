@@ -19,21 +19,52 @@ Inspiration : la structure du site de Zainab Kabira (hero → preuves → étude
 | 5 | **Carnet de route** (témoignages) | Preuve sociale | **Uniquement avec de vraies citations**, sinon la section n'existe pas |
 | 6 | **Le sommet** (contact) | Conversion | Ciel de fin de journée, ce que je recherche, liens, CV ; l'altimètre arrive en haut |
 
-### 2. Page projet `/projets/:nom` — fiche d'itinéraire
+### 2. Page projet `/projets/:nom` — « La halte »
 
-En-tête avec un **profil d'altitude** du projet : le temps en abscisse, la difficulté en ordonnée, et des repères pour les étapes clés. Ensuite, dans l'ordre de `STRATEGIE-PORTFOLIO.md` §3.1 : le problème et pour qui → mon rôle → 2 ou 3 décisions et leur pourquoi → le résultat → ce que j'ai appris → la stack, puis une carte « Prochaine étape » vers le projet suivant.
+Ouvrir un projet, c'est **quitter le sentier pour une pause** : on s'assoit sur un rocher, on pose le sac, on sort les jumelles et on observe le paysage. Le projet, c'est ce paysage. **Une seule scène peinte commune aux 3 projets** ; seul le contenu change.
 
-### 3. À propos `/a-propos`
+Règle de la stratégie (§3.1, §4) : le résumé est lisible tout de suite, sans scroller ni attendre une animation ; les animations racontent autour, elles ne cachent rien.
 
-- **Parcours** : carte topographique de l'itinéraire (formation et expériences), chaque étape orientée vers ce que j'y ai appris ou apporté.
-- **Hors code** : montagne et scoutisme, présentés comme des compétences (encadrement, organisation, autonomie).
-- **Terrain de jeu** (optionnel) : les expériences techniques du site (boussole, générateur de courbes de niveau…).
+| # | Moment | Contenu | Animation / interaction |
+|---|---|---|---|
+| 1 | On s'arrête | **Fiche d'observation** : nom, problème et pour qui en une phrase, rôle, durée, résultat principal, « Essayer » / « Voir le code » | Sur ordinateur, les étapes 1 à 3 sont **une seule scène épinglée** sur le même panorama |
+| 2 | La brume | **Le problème** | La brume monte dans la vallée puis se dissipe |
+| 3 | Les jumelles | **Ce que j'ai construit** (fonctionnalités clés) | Le personnage s'efface, la vue s'assombrit, les jumelles suivent la souris ; le scroll passe d'un repère à l'autre et la carte affiche la capture de chaque fonctionnalité |
+| 3 bis | Les clichés | **Galerie de captures** (ordinateur et mobile) | Défilement horizontal épinglé sur ordinateur, glissement au doigt sur mobile |
+| 4 | Le carnet de terrain | **2 ou 3 décisions et leur pourquoi** | Pages du carnet qui se tournent au scroll |
+| 5 | Essayer | **Démo interactive** (clone du projet) | « Prendre les jumelles » ouvre la démo en grand dans la page |
+| 6 | Les relevés | **Le résultat** (chiffres réels) | Chiffres qui défilent comme l'altimètre |
+| 7-8 | Le soleil baisse, on reprend la route | **Ce que j'ai appris**, stack, carte « Prochaine étape » | Une seule scène du soir : le ciel doré se fond dans le panorama réchauffé, le personnage debout repart |
+
+**Faune cachée** (chamois sur l'arête de la cascade, marmotte dans le pré du hameau, aigle qui tourne dans le ciel) : visible **uniquement à travers les jumelles**, à découvrir en les promenant sur le paysage. Positions dans `components/halte/landmarks.ts`. L'aigle est immobile en mouvement réduit.
+
+**Altimètre** : présent aussi sur la page projet ; il monte de l'altitude du projet (`altitudeM` dans `content/projects.ts`) jusqu'au belvédère (+ 120 m).
+
+**Démo du clone** : site statique autonome avec données inventées (aucune donnée réelle), servi depuis le portfolio (`/demos/<projet>/`) dans une iframe chargée au clic, avec capture et vidéo courte avant le clic, bouton « Réinitialiser », plein écran sur mobile.
+
+**Par projet** : captures 1440 × 900, vidéo de 20 à 30 s (enregistrement d'écran muet en boucle), croquis de décisions en option.
+
+### 3. À propos `/a-propos` — « Le camp de base »
+
+Le camp d'où l'on part et où l'on revient : pour la première fois, on voit Timothé **de face**. Altimètre de 980 m (parking) à 1 050 m (le camp).
+
+| # | Moment | Contenu | Mise en scène |
+|---|---|---|---|
+| 1 | On arrive au camp | Accroche « Au collège, je créais des visuels et je montais des vidéos pour des youtubeurs. Aujourd'hui, je crée des produits. » + bio courte | Camp peint, personnage assis de face avec une tasse, carte de texte à gauche |
+| 2 | Le fil à linge | 6 vraies photos (fun, naturelles) en polaroïd | Les photos tombent sur la corde au scroll puis se balancent |
+| 3 | La carte punaisée | D'où je viens : collège, seconde, BUT MMI, Trialog + Efrei ; lien vers le parcours détaillé de l'accueil | Fil rouge qui se tend de punaise en punaise au scroll |
+| 4 | Les écussons | Le scoutisme en 6 compétences, chacune avec sa preuve | Les écussons viennent se coudre sur le foulard |
+| 5 | En ce moment au camp | La dernière expédition (Mont Buet) avec chiffres, + 4 petites cartes perso | Les cartes, empilées, s'étalent sur la table de camp au scroll |
+| 6 | Prochain départ | Ce que je recherche, contact, projets | Dégradé de lever de soleil |
+
+Contenu dans `src/content/about.ts` (textes guides entre crochets à remplacer), images dans `public/images/about/`.
 
 ## Éléments transverses
 
 - **Navigation** : pilule flottante (initiale ou photo, liens, bouton « Me contacter »).
 - **Boussole = navigation** : un clic sur l'étiquette mène à la section indiquée.
 - **Altimètre** : progression de la page.
+- **Curseur GPS** : point bleu « Vous êtes ici » avec halo qui suit ; orange et agrandi au survol d'un élément cliquable, avec une étiquette quand l'élément porte `data-cursor-label`. Souris uniquement, curseur normal dans les champs de texte et quand la démo est ouverte.
 - **Transition entre pages** : les nuages crème se ferment puis s'ouvrent.
 - **Mode nuit** : lune et étoiles à la place du soleil, calques de nuit.
 - **Loader** : compteur d'altitude, très court.
@@ -51,9 +82,9 @@ En-tête avec un **profil d'altitude** du projet : le temps en abscisse, la diff
 - [ ] Contenus réels fournis par Timothé (projets, recherche, liens) — les textes actuels sont des exemples
 
 ### Phase 2 — profondeur
-- [ ] Routeur (React Router) — change la règle « pas de routeur » de `CLAUDE.md`
-- [ ] Pages projet (fiche d'itinéraire + profil d'altitude)
-- [ ] Page À propos
+- [x] Routeur (React Router 7, mode déclaratif)
+- [x] Pages projet « La halte » (scène commune, démo intégrée) — structure et animations faites, contenus à remplir
+- [x] Page À propos « Le camp de base » — structure et animations faites, photos et textes à fournir
 - [ ] Section « Carnet de route » si témoignages
 
 ### Phase 3 — finitions
